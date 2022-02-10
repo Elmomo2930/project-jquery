@@ -89,8 +89,7 @@ if($action == "deleteuser"){
            $message = ['user delete' => 0];
         }
         echo json_encode($message);
-        exit();
-    }
+        exit();    }
 }
 
 if($action == "searchuser"){

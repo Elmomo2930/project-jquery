@@ -201,7 +201,8 @@ $(document).ready(function () {
       },
       success: function (rest) {
           if(rest.delete == 1){
-              $(".message").html('the user has been deleted success!').fadeIn().delay(2000).fadeOut();
+              $(".message").html('the user has been deleted success!')
+              .fadeIn().delay(2000).fadeOut();
              getUsers();
             $("#overlay").fadeOut();
           }
