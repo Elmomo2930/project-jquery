@@ -29,7 +29,10 @@
 
         <div class="row mb-3">
             <div class="col-3">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#userModal" id="addBtn">Add New <i class="fa fa-user-circle-o"></i></button>
+            <button type="button" class="btn btn-info" 
+                data-toggle="modal" data-target="#userModal" id="addBtn">
+                Add New <i class="fa fa-user-circle-o"></i>
+            </button>
             </div>
             <div class="col-9">
                 <div class="input-group input-group-lg">

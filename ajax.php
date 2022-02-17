@@ -93,7 +93,7 @@ if($action == "deleteuser"){
 }
 
 if($action == "searchuser"){
-    $query = (!empty($_GET['searchstring'])) ? trim($_GET['searchstring']) : '';
+    $query = (!empty($_GET['query'])) ? $_GET['query'] : '';
     $resultado =  $obj->searchUser($query);
     echo json_encode($resultado);
     exit();

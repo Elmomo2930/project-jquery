@@ -57,7 +57,6 @@ function getUsers() {
       $("#overlay").fadeIn();
     },
     success: function (rows) {
-      console.log(rows);
       if (rows.users) {
         var listuser = "";
         $.each(rows.users, function (index, user) {
@@ -71,8 +70,8 @@ function getUsers() {
         $("#overlay").fadeOut();
       }
     },
-    error: function () {
-      console.log("ERROR");
+    error: function (x,y,z) {
+      console.log(x,y,z);
     },
   });
 }
@@ -82,6 +81,7 @@ $(document).ready(function () {
 
   $(document).on("submit", "#addform", function (e) {
     e.preventDefault();
+    $('#searchinput').val('');
     var alerting = ($('#userid').val().length > 0) ? 'user was added succesfully' : 
     'the user has been added exited!';
     $.ajax({
@@ -119,6 +119,8 @@ $(document).ready(function () {
     $this.parent().addClass("active");
   });
 
+  
+
   // resetiar el modal del formulario con un nuevo boton
   $(document).on("click", "#addBtn", function(){
        $("#addform")[0].reset();
@@ -128,7 +130,7 @@ $(document).ready(function () {
   // obtener usuarios
   $(document).on("click", "a.edituser", function () {
     var tid = $(this).data("id");
-
+    $('#searchinput').val('');
     $.ajax({
       url: "/project-jquery/ajax.php",
       type: "GET",
@@ -152,34 +154,35 @@ $(document).ready(function () {
     });
   });
 
-  $('#searchinput').on("keyup",  function(){
+  $('#searchinput').on("keyup",  function(e){
+   //e.preventDefault();
    const searching = $(this).val();
-   if(searching.length > 1){
+   if(searching !== ''){
       $.ajax({
       url: "/project-jquery/ajax.php",
       type: "GET",
-      dataType: "json",
+      //dataType: "json",
       data: { query: searching, action: "searchuser" },
       success: function (use) {
           if (use) {
-        var listuser = "";
-        $.each(use, function (index, user) {
-          listuser += getuserrow(user);
-        });
-        $("#userstable tbody").html(listuser);
-        $("#pagination").hide();
-        $("#overlay").fadeOut();
+            var listuser = "";
+            let data = JSON.parse(use);
+            $.each(data, function (index, user) {
+              listuser += getuserrow(user);
+            });
+            $("#userstable tbody").html(listuser);
+            $("#pagination").hide();
+            $("#overlay").fadeOut();
       }
     },
       error: function () {
-        console.log("ERROR");
+        console.log('ERROR');
       },
     });
    } else {
      getUsers();
      $("#pagination").show();
    }
-   getUsers();
 });
   // cargar usuarios
   getUsers();
@@ -189,6 +192,7 @@ $(document).ready(function () {
 
  $(document).on("click", "a.deleteuser", function (e) {
      e.preventDefault();
+    $('#searchinput').val('');
     var tid = $(this).data("id");
     if(confirm('sure of delete this?')){
       $.ajax({

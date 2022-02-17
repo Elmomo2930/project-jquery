@@ -40,7 +40,8 @@
     <a href="#" class="btn btn-secondary mr-3 edituser" data-toggle="modal" data-target="#userModal" title="Edit"><i class="fa fa-pencil-square-o fa-lg"></i></a>
     <a href="#" class="btn btn-warning deleteuser" title="Delete"><i class="fa fa-trash-o fa-lg"></i></a>
     </td>
-    </tr><tr>
+    </tr>
+    <tr>
     <td class="align-middle"><img src="http://placehold.it/80x80" class="img-thumbnail rounded float-left"></td>
     <td class="align-middle">sara saratinni</td>
     <td class="align-middle">florencia, ITALY</td>

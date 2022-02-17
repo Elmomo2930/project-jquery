@@ -138,7 +138,7 @@
            if($stmt->rowCount() > 0){
                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
            } else {
-
+        
               $results = [];
            }
            return $results;
